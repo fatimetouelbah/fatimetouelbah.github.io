@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fatimetou El Bah — Research</title>
+<meta name="description" content="Academic homepage of Fatimetou El Bah, PhD Candidate in Economics at Sciences Po Paris — research and CV.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     DESIGN TOKENS — change these to restyle the whole site
+     ============================================================ */
+  :root{
+    --ink:      #1c2430;   /* main text / dark surfaces */
+    --paper:    #f7f5f0;   /* page background */
+    --paper-2:  #efece4;   /* slightly deeper panel background */
+    --rule:     #d8d3c8;   /* hairline dividers */
+    --accent:   #7a2e2e;   /* oxblood — links, citation numbers */
+    --muted:    #6b6558;   /* secondary / caption text */
+
+    --display: "Fraunces", Georgia, serif;
+    --body:    "Inter", -apple-system, sans-serif;
+    --mono:    "IBM Plex Mono", monospace;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a{ color: var(--accent); text-decoration: none; }
+  a:hover{ text-decoration: underline; }
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  h1,h2,h3{ font-family: var(--display); font-weight: 600; margin: 0; }
+
+  .wrap{ max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Header / nav ---------- */
+  header{
+    border-bottom: 1px solid var(--rule);
+    position: sticky; top: 0;
+    background: rgba(247,245,240,0.92);
+    backdrop-filter: blur(6px);
+    z-index: 10;
+  }
+  header .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top: 16px; padding-bottom: 16px;
+  }
+  .brand{ font-family: var(--display); font-weight: 600; font-size: 1.05rem; }
+  nav ul{ list-style:none; display:flex; gap: 22px; margin:0; padding:0; }
+  nav a{ color: var(--ink); font-size: 0.92rem; font-weight: 500; }
+  nav a:hover{ color: var(--accent); text-decoration:none; }
+
+  /* ---------- Intro (name + bio paragraphs, no "About" heading) ---------- */
+  .intro{ padding: 72px 0 48px; }
+  .intro h1{ font-size: clamp(2.1rem, 5vw, 3rem); line-height: 1.1; }
+  .intro .links{ margin-top: 18px; display:flex; gap:18px; flex-wrap: wrap; font-size: 0.95rem; }
+  .intro p{ max-width: 62ch; color: var(--ink); }
+  .intro p{ margin-top: 22px; }
+
+  /* ---------- Section scaffolding ---------- */
+  section{ padding: 48px 0; border-top: 1px solid var(--rule); }
+  section > .wrap > h2{ font-size: 1.5rem; margin-bottom: 28px; }
+
+  /* ---------- Research ---------- */
+  .research-group{ margin-bottom: 36px; }
+  .research-group:last-child{ margin-bottom: 0; }
+  .research-group h3{
+    font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--accent); font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .pub-list{ list-style:none; margin:0; padding:0; }
+  .pub{
+    display:grid;
+    grid-template-columns: 34px 1fr;
+    gap: 4px 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .pub:first-child{ padding-top: 0; }
+  .pub .n{
+    font-family: var(--mono); color: var(--accent); font-size: 0.85rem; padding-top: 3px;
+  }
+  .pub .title{ font-family: var(--display); font-weight: 600; font-size: 1.08rem; }
+  .pub .meta{ color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+  .pub .actions{ margin-top: 8px; display:flex; gap: 16px; font-size: 0.88rem; }
+  .pub .actions a{ font-weight: 500; }
+
+  .tag{
+    display:inline-block; font-family: var(--mono); font-size: 0.68rem;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    color: var(--muted); border: 1px solid var(--rule);
+    border-radius: 3px; padding: 2px 6px; margin-left: 8px;
+    transform: translateY(-1px);
+  }
+
+  /* ---------- CV ---------- */
+  .cv-box{
+    display:flex; align-items:center; justify-content:space-between;
+    gap: 16px; flex-wrap: wrap;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 20px 22px;
+  }
+  .cv-box .cv-btn{
+    background: var(--ink); color: var(--paper);
+    padding: 10px 18px; border-radius: 4px;
+    font-size: 0.92rem; font-weight: 500;
+  }
+  .cv-box .cv-btn:hover{ text-decoration:none; background: var(--accent); }
+
+  /* ---------- Footer ---------- */
+  footer{ padding: 40px 0 60px; }
+  footer .wrap{ color: var(--muted); font-size: 0.9rem; }
+
+  @media (max-width: 560px){
+    nav ul{ gap: 14px; }
+    .pub{ grid-template-columns: 24px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">Fatimetou El Bah</div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#cv">CV</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================================================
+     INTRO — name + quick links + bio paragraphs, no "About" heading
+     ============================================================ -->
+<section id="about" class="intro" style="border-top:none;">
+  <div class="wrap">
+    <h1>Fatimetou El Bah</h1>
+    <div class="links">
+      <a href="cv/cv.pdf">CV</a>
+      <a href="https://www.linkedin.com/in/fatimetou-e-1651b0132/">LinkedIn</a>
+    </div>
+    <p>
+      I am a PhD candidate in Economics at Sciences Po Paris, supervised by
+      Clément de Chaisemartin.
+    </p>
+    <p>
+      My dissertation is carried out under a COFRA (Convention de formation
+      par la recherche en administration) agreement between the Department
+      of Economics at Sciences Po Paris and the DEPP, the statistical
+      service of the French Ministry of National Education.
+    </p>
+    <p>
+      My research interests are economics of education and impact
+      evaluation of public policies.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     RESEARCH — Working papers / Work in progress
+     Duplicate a .pub block within a group for each paper.
+     Put PDFs in /papers and link to them directly.
+     ============================================================ -->
+<section id="research">
+  <div class="wrap">
+    <h2>Research</h2>
+
+    <div class="research-group">
+      <h3>Working papers</h3>
+      <ul class="pub-list">
+
+        <li class="pub">
+          <div class="n">01</div>
+          <div>
+            <div class="title">Les effets de long terme de la réduction de la taille de classe en éducation prioritaire sur les performances des élèves<span class="tag">in French</span></div>
+            <div class="meta">DEPP, Ministère de l'Éducation Nationale</div>
+            <div class="actions">
+              <a href="https://www.education.gouv.fr/sites/default/files/document/les-effets-long-terme-de-la-r-duction-de-la-taille-de-classe-en-ducation-prioritaire-sur-les-performances-des-l-ves-478865.pdf">PDF</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="pub">
+          <div class="n">02</div>
+          <div>
+            <div class="title">[Title of your second working paper]</div>
+            <div class="meta">F. El Bah — [year]</div>
+            <div class="actions">
+              <a href="papers/paper2.pdf">PDF</a>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="research-group">
+      <h3>Work in progress</h3>
+      <ul class="pub-list">
+
+        <li class="pub">
+          <div class="n">01</div>
+          <div>
+            <div class="title">[Title of first project]</div>
+            <div class="meta">F. El Bah</div>
+          </div>
+        </li>
+
+        <li class="pub">
+          <div class="n">02</div>
+          <div>
+            <div class="title">[Title of second project]</div>
+            <div class="meta">F. El Bah</div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     CV
+     ============================================================ -->
+<section id="cv">
+  <div class="wrap">
+    <h2>CV</h2>
+    <div class="cv-box">
+      <div>
+        <div style="font-weight:600; font-family:var(--display);">Full curriculum vitae</div>
+        <div style="color:var(--muted); font-size:0.9rem; margin-top:4px;">Updated Month 2026 · PDF</div>
+      </div>
+      <a class="cv-btn" href="cv/cv.pdf">Download CV</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Fatimetou El Bah, 2026.
+  </div>
+</footer>
+
+</body>
+</html>
